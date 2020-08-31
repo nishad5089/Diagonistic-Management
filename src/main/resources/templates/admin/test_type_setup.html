@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="/admin/admin_layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Add User</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Test Type Setup</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6" style="margin: 0 auto;">
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Test Type Setup</h3>
+                        </div>
+                        <form class="form-horizontal">
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label for="typeName" class="col-sm-3 col-form-label">Type Name</label>
+                                    <div class="col-sm-9">
+                                    <input type="typeName" class="form-control" id="typeName" placeholder="Type Name">
+                                </div>
+                                </div>
+
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-info" style="float: right;">Save</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6" style="margin: 5px auto;">
+                    <div class="card">
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table class="table table-bordered table-striped">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th style="width: 10px">#SL</th>
+                                    <th>Type Name</th>
+                                    <th>Action</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1.</td>
+                                    <td>Update software</td>
+                                    <td>
+                                        <a th:href="www.google.com"
+                                           class="btn btn-info btn-sm">
+                                        Update
+                                        </a>
+
+                                        <a th:href="www.google.com"
+                                           class="btn btn-danger btn-sm"
+                                           onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
+                                            Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2.</td>
+                                    <td>Clean database</td>
+                                    <td>
+                                        <a th:href="www.google.com"
+                                            class="btn btn-info btn-sm">
+                                        Update
+                                         </a>
+
+                                        <a th:href="www.google.com"
+                                           class="btn btn-danger btn-sm"
+                                           onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
+                                            Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3.</td>
+                                    <td>Cron job running</td>
+                                    <td>
+                                        <a th:href="www.google.com"
+                                            class="btn btn-info btn-sm">
+                                        Update
+                                        </a>
+
+                                        <a th:href="www.google.com"
+                                           class="btn btn-danger btn-sm"
+                                           onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
+                                            Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4.</td>
+                                    <td>Fix and squish bugs</td>
+                                    <td>
+                                        <a th:href="www.google.com"
+                                            class="btn btn-info btn-sm">
+                                        Update
+                                         </a>
+
+                                        <a th:href="www.google.com"
+                                           class="btn btn-danger btn-sm"
+                                           onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
+                                            Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer clearfix">
+                            <ul class="pagination pagination-sm m-0 float-right">
+                                <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+
+
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+</div>
+
+</body>
+</html>
