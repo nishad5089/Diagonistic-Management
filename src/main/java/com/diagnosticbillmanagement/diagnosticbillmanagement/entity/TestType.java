@@ -4,22 +4,37 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="test_type")
+@Table(name="testtype")
 public class TestType {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="id")
     private int id;
 
-    @Column(name="test_name")
-    private String typeName;
+    @Column(name="name",unique=true)
+    private String name;
 
     @OneToMany(mappedBy = "testType", cascade = CascadeType.ALL)
-    private List<Test> test;
+    private List<Test> tests;
 
     public TestType() {
     }
-    public TestType(String testName) {
-        this.typeName = testName;
+
+    public TestType(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public List<Test> getTests() {
+        return tests;
+    }
+
+    public void setTests(List<Test> tests) {
+        this.tests = tests;
+    }
+
+    public TestType(String name) {
+        this.name = name;
     }
 
     public int getId() {
@@ -30,19 +45,29 @@ public class TestType {
         this.id = id;
     }
 
-    public String getTestName() {
-        return typeName;
+    public String getName() {
+        return name;
     }
 
-    public void setTestName(String testName) {
-        this.typeName = testName;
+    public void setName(String name) {
+        this.name = name;
     }
+
 
     @Override
     public String toString() {
         return "TestType{" +
                 "id=" + id +
-                ", testName='" + typeName + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
+
+//    public void add(Test test){
+//
+//        if(tests == null){
+//            tests = new ArrayList<>();
+//        }
+//        tests.add(test);
+//        test.setTestType(this);
+//    }
 }

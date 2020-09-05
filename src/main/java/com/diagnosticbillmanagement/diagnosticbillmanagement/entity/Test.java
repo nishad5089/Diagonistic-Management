@@ -1,25 +1,52 @@
 package com.diagnosticbillmanagement.diagnosticbillmanagement.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "test")
+@Table(name="test")
 public class Test {
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "test_name")
-    private String testName;
-    private double fee;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "type_id")
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "payment")
+    private int payment;
+
+    @ManyToOne(fetch=FetchType.LAZY,
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinColumn(name = "testtype_id")
     private TestType testType;
+
+    @ManyToMany(fetch=FetchType.LAZY,
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name="test_testrequest",
+            joinColumns=@JoinColumn(name="test_id"),
+            inverseJoinColumns=@JoinColumn(name="testrequest_id")
+    )
+    private List<TestRequest> testRequests;
 
     public Test() {
     }
-    public Test(String testName, double fee, TestType testType) {
-        this.testName = testName;
-        this.fee = fee;
+
+    public Test(int id, String name, int payment) {
+        this.id = id;
+        this.name = name;
+        this.payment = payment;
+
+    }
+
+    public TestType getTestType() {
+        return testType;
+    }
+
+    public void setTestType(TestType testType) {
         this.testType = testType;
     }
 
@@ -31,37 +58,27 @@ public class Test {
         this.id = id;
     }
 
-    public String getTestName() {
-        return testName;
+    public String getName() {
+        return name;
     }
 
-    public void setTestName(String testName) {
-        this.testName = testName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public double getFee() {
-        return fee;
+    public int getPayment() {
+        return payment;
     }
 
-    public void setFee(double fee) {
-        this.fee = fee;
+    public void setPayment(int payment) {
+        this.payment = payment;
     }
 
-    public TestType getTestType() {
-        return testType;
+    public List<TestRequest> getTestRequests() {
+        return testRequests;
     }
 
-    public void setTestType(TestType testType) {
-        this.testType = testType;
-    }
-
-    @Override
-    public String toString() {
-        return "Test{" +
-                "id=" + id +
-                ", TestName='" + testName + '\'' +
-                ", fee='" + fee + '\'' +
-                ", testType=" + testType +
-                '}';
+    public void setTestRequests(List<TestRequest> testRequests) {
+        this.testRequests = testRequests;
     }
 }
