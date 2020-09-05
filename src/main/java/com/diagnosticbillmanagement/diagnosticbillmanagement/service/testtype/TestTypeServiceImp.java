@@ -1,8 +1,8 @@
 package com.diagnosticbillmanagement.diagnosticbillmanagement.service.testtype;
 
 
-import com.diagnosticbillmanagement.diagnosticbillmanagement.dao.SpecificTestTypeRepository;
-import com.diagnosticbillmanagement.diagnosticbillmanagement.entity.SpecificTestType;
+import com.diagnosticbillmanagement.diagnosticbillmanagement.dao.TestTypeRepository;
+import com.diagnosticbillmanagement.diagnosticbillmanagement.entity.TestType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,19 +10,19 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class SpecificTestTypeServiceImp implements SpecificTestTypeService {
+public class TestTypeServiceImp implements TestTypeService {
     @Autowired
-   private SpecificTestTypeRepository testTypeRepository;
+   private TestTypeRepository testTypeRepository;
 
     @Override
-    public List<SpecificTestType> findAll() {
+    public List<TestType> findAll() {
         return testTypeRepository.findAllByOrderByNameAsc();
     }
 
     @Override
-    public SpecificTestType findById(int id) {
-        Optional<SpecificTestType> result = testTypeRepository.findById(id);
-        SpecificTestType testType = null;
+    public TestType findById(int id) {
+        Optional<TestType> result = testTypeRepository.findById(id);
+        TestType testType = null;
         if(result.isPresent()){
             testType = result.get();
         }else {
@@ -32,7 +32,7 @@ public class SpecificTestTypeServiceImp implements SpecificTestTypeService {
     }
 
     @Override
-    public void save(SpecificTestType testType) {
+    public void save(TestType testType) {
         testTypeRepository.save(testType);
     }
 

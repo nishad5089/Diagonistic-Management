@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity
 @Table(name="testtype")
-public class SpecificTestType {
+public class TestType {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
@@ -15,25 +15,25 @@ public class SpecificTestType {
     private String name;
 
     @OneToMany(mappedBy = "testType", cascade = CascadeType.ALL)
-    private List<SpecificTest> tests;
+    private List<Test> tests;
 
-    public SpecificTestType() {
+    public TestType() {
     }
 
-    public SpecificTestType(int id, String name) {
+    public TestType(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public List<SpecificTest> getTests() {
+    public List<Test> getTests() {
         return tests;
     }
 
-    public void setTests(List<SpecificTest> tests) {
+    public void setTests(List<Test> tests) {
         this.tests = tests;
     }
 
-    public SpecificTestType(String name) {
+    public TestType(String name) {
         this.name = name;
     }
 

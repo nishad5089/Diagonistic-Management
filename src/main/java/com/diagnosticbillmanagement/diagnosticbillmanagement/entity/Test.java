@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity
 @Table(name="test")
-public class SpecificTest {
+public class Test {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -16,9 +16,11 @@ public class SpecificTest {
     @Column(name = "payment")
     private int payment;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY,
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "testtype_id")
-    private SpecificTestType testType;
+    private TestType testType;
 
     @ManyToMany(fetch=FetchType.LAZY,
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
@@ -30,21 +32,21 @@ public class SpecificTest {
     )
     private List<TestRequest> testRequests;
 
-    public SpecificTest() {
+    public Test() {
     }
 
-    public SpecificTest(int id, String name, int payment) {
+    public Test(int id, String name, int payment) {
         this.id = id;
         this.name = name;
         this.payment = payment;
 
     }
 
-    public SpecificTestType getTestType() {
+    public TestType getTestType() {
         return testType;
     }
 
-    public void setTestType(SpecificTestType testType) {
+    public void setTestType(TestType testType) {
         this.testType = testType;
     }
 

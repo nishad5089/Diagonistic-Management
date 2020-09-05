@@ -28,12 +28,12 @@ public class TestRequest {
             joinColumns=@JoinColumn(name="testrequest_id"),
             inverseJoinColumns=@JoinColumn(name="test_id")
     )
-    private List<SpecificTest> specificTests;
+    private List<Test> specificTests;
 
     public TestRequest() {
     }
 
-    public TestRequest(int id, String nameOfPatient, Date DOB, String mobileNO, List<SpecificTest> specificTests) {
+    public TestRequest(int id, String nameOfPatient, Date DOB, String mobileNO, List<Test> specificTests) {
         this.id = id;
         this.nameOfPatient = nameOfPatient;
         this.DOB = DOB;
@@ -73,11 +73,11 @@ public class TestRequest {
         this.mobileNO = mobileNO;
     }
 
-    public List<SpecificTest> getSpecificTests() {
+    public List<Test> getSpecificTests() {
         return specificTests;
     }
 
-    public void setSpecificTests(List<SpecificTest> specificTests) {
+    public void setSpecificTests(List<Test> specificTests) {
         this.specificTests = specificTests;
     }
 }

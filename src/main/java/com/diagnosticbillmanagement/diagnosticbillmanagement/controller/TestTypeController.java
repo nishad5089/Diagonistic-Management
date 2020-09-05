@@ -1,8 +1,8 @@
 package com.diagnosticbillmanagement.diagnosticbillmanagement.controller;
 
 
-import com.diagnosticbillmanagement.diagnosticbillmanagement.entity.SpecificTestType;
-import com.diagnosticbillmanagement.diagnosticbillmanagement.service.testtype.SpecificTestTypeService;
+import com.diagnosticbillmanagement.diagnosticbillmanagement.entity.TestType;
+import com.diagnosticbillmanagement.diagnosticbillmanagement.service.testtype.TestTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,33 +12,31 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/testtypes")
-public class SpecificTestTypeController {
-    private SpecificTestTypeService testTypeService;
+public class TestTypeController {
+    private TestTypeService testTypeService;
     @Autowired
-    public SpecificTestTypeController(SpecificTestTypeService testTypeService) {
+    public TestTypeController(TestTypeService testTypeService) {
         this.testTypeService = testTypeService;
     }
 
     @GetMapping("/list")
-    public String listEmployees(Model model) {
+    public String listTestTypes(Model model) {
 
-        List<SpecificTestType> testTypes = testTypeService.findAll();
+        List<TestType> testTypes = testTypeService.findAll();
 
         // add to the spring model
         model.addAttribute("testtypes", testTypes);
 
-        //return "employees/list-employees";
         return "/list-testtypes";
     }
 
     @GetMapping("/showFormForAdd")
     public String showFormForAdd(Model theModel) {
 
-        SpecificTestType testType = new SpecificTestType();
+        TestType testType = new TestType();
 
         theModel.addAttribute("testtype", testType);
 
-        //return "employees/employee-form";
         return "testtype-form";
     }
 
@@ -53,13 +51,12 @@ public class SpecificTestTypeController {
 //        theModel.addAttribute("testtype", testType);
 //
 //        // send over to our form
-//       // return "employees/employee-form";
+//
 //        return "";
 //    }
     @PostMapping("/save")
-    public String saveEmployee(@ModelAttribute("testtype") SpecificTestType testType) {
+    public String saveTestType(@ModelAttribute("testtype") TestType testType) {
 
-        // save the employee
         testTypeService.save(testType);
 
         // use a redirect to prevent duplicate submissions
@@ -72,8 +69,7 @@ public class SpecificTestTypeController {
 //        // delete the employee
 //        testTypeService.deleteById(id);
 //
-//        // redirect to /employees/list
-//       // return "redirect:/employees/list";
+//       // return "redirect:/tests/list";
 //        return "";
 //
 //    }
