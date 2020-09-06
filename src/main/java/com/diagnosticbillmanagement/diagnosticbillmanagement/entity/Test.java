@@ -1,5 +1,4 @@
 package com.diagnosticbillmanagement.diagnosticbillmanagement.entity;
-
 import javax.persistence.*;
 import java.util.List;
 

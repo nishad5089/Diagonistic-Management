@@ -33,14 +33,15 @@
                         <div class="card-header">
                             <h3 class="card-title">Test Type Setup</h3>
                         </div>
-                        <form class="form-horizontal" action="#" th:action="@{testtypesetup/save}"
+                        <form class="form-horizontal" action="#" th:action="@{testtypesetup}"
                               th:object="${testtype}" method="POST">
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="typeName" class="col-sm-3 col-form-label">Type Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" th:field="*{typeName}" class="form-control" id="typeName" placeholder="Type Name">
-
+                                        <input type="text" th:field="*{typeName}" class="form-control" th:classappend="${#fields.hasErrors('typeName')}? 'is-invalid':''" id="typeName" placeholder="Type Name">
+                                        <span id="exampleInputEmail1-error" class="error invalid-feedback" th:each="error: ${#fields.errors('typeName')}"
+                                              th:text="${error}">Validation error</span>
                                      </div>
                                 </div>
                             </div>

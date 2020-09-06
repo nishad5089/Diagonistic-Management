@@ -10,16 +10,6 @@ public class AdminPageController {
         return "admin/dashboard";
     }
 
-    @RequestMapping("/admin/form")
-    public String form() {
-        return "admin/generalForm";
-    }
-
-    @RequestMapping("/admin/testtypesetup")
-    public String testType() {
-        return "admin/test_type_setup";
-    }
-
     @RequestMapping("/admin/testsetup")
     public String testSetup() {
         return "admin/test_setup";

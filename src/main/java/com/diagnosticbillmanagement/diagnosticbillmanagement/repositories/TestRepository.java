@@ -1,4 +1,4 @@
-package com.diagnosticbillmanagement.diagnosticbillmanagement.dao;
+package com.diagnosticbillmanagement.diagnosticbillmanagement.repositories;
 
 import com.diagnosticbillmanagement.diagnosticbillmanagement.entity.Test;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -8,6 +8,5 @@ import java.util.List;
 
 @Repository
 public interface TestRepository extends JpaRepository<Test, Integer> {
-    public List<Test> findAllByOrderByTestNameAsc();
-
+    List<Test> findAllByOrderByTestNameAsc();
 }

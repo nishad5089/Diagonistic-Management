@@ -1,7 +1,8 @@
-package com.diagnosticbillmanagement.diagnosticbillmanagement.service.test;
+package com.diagnosticbillmanagement.diagnosticbillmanagement.services.impl;
 
-import com.diagnosticbillmanagement.diagnosticbillmanagement.dao.TestRepository;
+import com.diagnosticbillmanagement.diagnosticbillmanagement.repositories.TestRepository;
 import com.diagnosticbillmanagement.diagnosticbillmanagement.entity.Test;
+import com.diagnosticbillmanagement.diagnosticbillmanagement.services.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ public class TestServiceImp implements TestService {
 
     @Override
     public List<Test> findAll() {
-        return testRepository.findAllByOrderByNameAsc();
+        return testRepository.findAllByOrderByTestNameAsc();
     }
 
     @Override
