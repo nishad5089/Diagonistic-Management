@@ -22,7 +22,7 @@ public class TestTypeServiceImp implements TestTypeService {
     }
     public TestType getCountryById(String typeName) {
         return this.findAll().stream()
-                .filter(p -> Objects.equals(p.getTypeName(), typeName))
+                .filter(p -> Objects.equals(p.getTypeName().toLowerCase(), typeName.toLowerCase()))
                 .findFirst()
                 .orElse(null);
     }
