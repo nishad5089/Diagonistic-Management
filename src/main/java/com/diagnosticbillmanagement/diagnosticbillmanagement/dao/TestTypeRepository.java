@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface TestTypeRepository extends JpaRepository<TestType, Integer> {
-    public List<TestType> findAllByOrderByNameAsc();
+    public List<TestType> findAllByOrderByTypeNameAsc();
+
 }
