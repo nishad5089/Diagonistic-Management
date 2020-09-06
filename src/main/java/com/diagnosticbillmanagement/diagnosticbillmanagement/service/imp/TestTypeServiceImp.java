@@ -1,8 +1,9 @@
-package com.diagnosticbillmanagement.diagnosticbillmanagement.service.testtype;
+package com.diagnosticbillmanagement.diagnosticbillmanagement.service.imp;
 
 
 import com.diagnosticbillmanagement.diagnosticbillmanagement.dao.TestTypeRepository;
 import com.diagnosticbillmanagement.diagnosticbillmanagement.entity.TestType;
+import com.diagnosticbillmanagement.diagnosticbillmanagement.service.TestTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

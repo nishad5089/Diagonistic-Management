@@ -2,8 +2,8 @@ package com.diagnosticbillmanagement.diagnosticbillmanagement.controller;
 
 import com.diagnosticbillmanagement.diagnosticbillmanagement.entity.Test;
 import com.diagnosticbillmanagement.diagnosticbillmanagement.entity.TestType;
-import com.diagnosticbillmanagement.diagnosticbillmanagement.service.test.TestService;
-import com.diagnosticbillmanagement.diagnosticbillmanagement.service.testtype.TestTypeService;
+import com.diagnosticbillmanagement.diagnosticbillmanagement.service.TestService;
+import com.diagnosticbillmanagement.diagnosticbillmanagement.service.TestTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

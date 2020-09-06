@@ -1,4 +1,4 @@
-package com.diagnosticbillmanagement.diagnosticbillmanagement.service.test;
+package com.diagnosticbillmanagement.diagnosticbillmanagement.service;
 
 import com.diagnosticbillmanagement.diagnosticbillmanagement.entity.Test;
 
