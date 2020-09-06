@@ -67,8 +67,8 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <tr th:each="testType: ${testtypelist}">
-                                        <td>1</td>
+                                    <tr th:each="testType,iterator : ${testtypelist}">
+                                        <td th:text=${iterator.count}></td>
                                         <td th:text="${testType.typeName}" />
                                         <td>
                                             <a th:href="www.google.com"
