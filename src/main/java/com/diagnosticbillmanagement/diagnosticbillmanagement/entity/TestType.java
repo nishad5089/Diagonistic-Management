@@ -12,7 +12,7 @@ public class TestType {
     private int id;
 
     @Column(name="name",unique=true)
-    private String name;
+    private String typeName;
 
     @OneToMany(mappedBy = "testType", cascade = CascadeType.ALL)
     private List<Test> tests;
@@ -20,9 +20,9 @@ public class TestType {
     public TestType() {
     }
 
-    public TestType(int id, String name) {
+    public TestType(int id, String typeName) {
         this.id = id;
-        this.name = name;
+        this.typeName = typeName;
     }
 
     public List<Test> getTests() {
@@ -33,8 +33,8 @@ public class TestType {
         this.tests = tests;
     }
 
-    public TestType(String name) {
-        this.name = name;
+    public TestType(String typeName) {
+        this.typeName = typeName;
     }
 
     public int getId() {
@@ -45,12 +45,12 @@ public class TestType {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTypeName() {
+        return typeName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 
 
@@ -58,16 +58,8 @@ public class TestType {
     public String toString() {
         return "TestType{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name='" + typeName + '\'' +
                 '}';
     }
 
-//    public void add(Test test){
-//
-//        if(tests == null){
-//            tests = new ArrayList<>();
-//        }
-//        tests.add(test);
-//        test.setTestType(this);
-//    }
 }

@@ -15,7 +15,7 @@ public class TestServiceImp implements TestService {
 
     @Override
     public List<Test> findAll() {
-        return testRepository.findAllByOrderByNameAsc();
+        return testRepository.findAllByOrderByTestNameAsc();
     }
 
     @Override

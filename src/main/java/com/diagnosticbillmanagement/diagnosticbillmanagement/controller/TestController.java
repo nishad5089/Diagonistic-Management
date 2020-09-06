@@ -15,41 +15,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/tests")
+@RequestMapping("/admin")
 public class TestController {
     @Autowired
     private TestService testService;
     @Autowired
     private TestTypeService testTypeService;
-    @GetMapping("/list")
-    public String listTests(Model model) {
+
+    @GetMapping("/testsetup")
+    public String testSetup(Model model) {
 
         List<Test> tests = testService.findAll();
         model.addAttribute("tests", tests);
 
-        return "test/list-tests";
-    }
-    @GetMapping("/showFormForAdd")
-    public String showFormForAdd(Model model) {
-
-        Test test = new Test();
-
-        model.addAttribute("test", test);
-
         List<TestType> testTypeList = testTypeService.findAll();
-
         model.addAttribute("testtypes", testTypeList);
 
-        return "test/test-form";
+        Test test = new Test();
+        model.addAttribute("test", test);
+
+
+        return "admin/test_setup";
     }
-    @PostMapping("/save")
+
+    @PostMapping("/testsetup/save")
     public String saveTest(@ModelAttribute("test") Test test) {
 
 
         testService.save(test);
 
         // use a redirect to prevent duplicate submissions
-        return "redirect:/tests/list";
+        return "redirect:/admin/testsetup";
 
     }
 }

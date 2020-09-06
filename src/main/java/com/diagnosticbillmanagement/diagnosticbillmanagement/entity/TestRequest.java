@@ -14,8 +14,8 @@ public class TestRequest {
     @Column(name = "name")
     private String nameOfPatient;
 
-    @Column
-    private Date DOB;
+    @Column(name="DOB")
+    private Date dateOfBirth;
 
     @Column(name = "Mobile_no")
     private String mobileNO;
@@ -28,17 +28,17 @@ public class TestRequest {
             joinColumns=@JoinColumn(name="testrequest_id"),
             inverseJoinColumns=@JoinColumn(name="test_id")
     )
-    private List<Test> specificTests;
+    private List<Test> tests;
 
     public TestRequest() {
     }
 
-    public TestRequest(int id, String nameOfPatient, Date DOB, String mobileNO, List<Test> specificTests) {
+    public TestRequest(int id, String nameOfPatient, Date dateOfBirth, String mobileNO, List<Test> tests) {
         this.id = id;
         this.nameOfPatient = nameOfPatient;
-        this.DOB = DOB;
+        this.dateOfBirth = dateOfBirth;
         this.mobileNO = mobileNO;
-        this.specificTests = specificTests;
+        this.tests = tests;
     }
 
     public int getId() {
@@ -57,12 +57,12 @@ public class TestRequest {
         this.nameOfPatient = nameOfPatient;
     }
 
-    public Date getDOB() {
-        return DOB;
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setDOB(Date DOB) {
-        this.DOB = DOB;
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getMobileNO() {
@@ -73,11 +73,11 @@ public class TestRequest {
         this.mobileNO = mobileNO;
     }
 
-    public List<Test> getSpecificTests() {
-        return specificTests;
+    public List<Test> getTests() {
+        return tests;
     }
 
-    public void setSpecificTests(List<Test> specificTests) {
-        this.specificTests = specificTests;
+    public void setTests(List<Test> tests) {
+        this.tests = tests;
     }
 }

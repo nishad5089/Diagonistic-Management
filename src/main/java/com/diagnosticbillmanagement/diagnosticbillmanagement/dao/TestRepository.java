@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface TestRepository extends JpaRepository<Test, Integer> {
-    public List<Test> findAllByOrderByNameAsc();
+    public List<Test> findAllByOrderByTestNameAsc();
 }

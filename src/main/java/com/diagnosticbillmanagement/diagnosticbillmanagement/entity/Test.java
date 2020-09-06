@@ -10,11 +10,11 @@ public class Test {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "testName")
+    private String testName;
 
-    @Column(name = "payment")
-    private int payment;
+    @Column(name = "fee")
+    private double fee;
 
     @ManyToOne(fetch=FetchType.LAZY,
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
@@ -35,10 +35,10 @@ public class Test {
     public Test() {
     }
 
-    public Test(int id, String name, int payment) {
+    public Test(int id, String testName, double fee) {
         this.id = id;
-        this.name = name;
-        this.payment = payment;
+        this.testName = testName;
+        this.fee = fee;
 
     }
 
@@ -58,20 +58,20 @@ public class Test {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTestName() {
+        return testName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTestName(String testName) {
+        this.testName = testName;
     }
 
-    public int getPayment() {
-        return payment;
+    public double getFee() {
+        return fee;
     }
 
-    public void setPayment(int payment) {
-        this.payment = payment;
+    public void setFee(double fee) {
+        this.fee = fee;
     }
 
     public List<TestRequest> getTestRequests() {
