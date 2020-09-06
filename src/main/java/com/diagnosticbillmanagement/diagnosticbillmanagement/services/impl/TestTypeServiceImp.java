@@ -20,7 +20,7 @@ public class TestTypeServiceImp implements TestTypeService {
     public List<TestType> findAll() {
         return testTypeRepository.findAllByOrderByTypeNameAsc();
     }
-    public TestType getCountryById(String typeName) {
+    public TestType getTypeByTypeName(String typeName) {
         return this.findAll().stream()
                 .filter(p -> Objects.equals(p.getTypeName().toLowerCase(), typeName.toLowerCase()))
                 .findFirst()
@@ -29,7 +29,7 @@ public class TestTypeServiceImp implements TestTypeService {
 
     @Override
     public boolean isTypeExist(String typeName) {
-        return this.getCountryById(typeName) instanceof TestType ? true : false;
+        return this.getTypeByTypeName(typeName) instanceof TestType ? true : false;
     }
     @Override
     public TestType findById(int id) {
