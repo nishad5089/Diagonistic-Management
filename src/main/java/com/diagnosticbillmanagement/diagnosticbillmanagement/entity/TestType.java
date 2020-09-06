@@ -11,7 +11,7 @@ public class TestType {
     @Column(name="id")
     private int id;
 
-    @Column(name="name",unique=true)
+    @Column(name="type_name",unique=true)
     private String typeName;
 
     @OneToMany(mappedBy = "testType", cascade = CascadeType.ALL)

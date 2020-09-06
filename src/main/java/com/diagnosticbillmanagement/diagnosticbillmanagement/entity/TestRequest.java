@@ -11,10 +11,10 @@ public class TestRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "name")
+    @Column(name = "pat_name")
     private String nameOfPatient;
 
-    @Column(name="DOB")
+    @Column(name="dob")
     private Date dateOfBirth;
 
     @Column(name = "Mobile_no")

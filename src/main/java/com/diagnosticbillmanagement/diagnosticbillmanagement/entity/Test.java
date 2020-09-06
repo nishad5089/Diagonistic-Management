@@ -10,7 +10,7 @@ public class Test {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "testName")
+    @Column(name = "test_name")
     private String testName;
 
     @Column(name = "fee")
