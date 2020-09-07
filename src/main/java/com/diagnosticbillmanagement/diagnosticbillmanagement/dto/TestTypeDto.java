@@ -1,9 +1,9 @@
 package com.diagnosticbillmanagement.diagnosticbillmanagement.dto;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 public class TestTypeDto {
-    @NotEmpty(message = "Type Name should not be empty")
+    @NotBlank(message = "Type Name should not be empty")
     private String typeName;
 
     public TestTypeDto() {

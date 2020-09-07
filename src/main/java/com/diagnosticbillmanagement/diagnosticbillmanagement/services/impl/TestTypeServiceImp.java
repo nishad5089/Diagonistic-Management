@@ -21,6 +21,9 @@ public class TestTypeServiceImp implements TestTypeService {
         return testTypeRepository.findAllByOrderByTypeNameAsc();
     }
     public TestType getTypeByTypeName(String typeName) {
+        if(typeName == null){
+            return null;
+        }
         return this.findAll().stream()
                 .filter(p -> Objects.equals(p.getTypeName().toLowerCase(), typeName.toLowerCase()))
                 .findFirst()

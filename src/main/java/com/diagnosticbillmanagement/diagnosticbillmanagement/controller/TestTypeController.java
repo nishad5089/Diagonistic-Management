@@ -6,10 +6,12 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
@@ -25,13 +27,18 @@ public class TestTypeController {
         this.testTypeService = testTypeService;
     }
 
+
     @ModelAttribute
     public void init(Model model) {
         logger.info("---Page Refreshed---");
         List<TestType> testTypes = testTypeService.findAll();
         model.addAttribute("testtypelist", testTypes);
     }
-
+//        @InitBinder
+//    public void initBinder(WebDataBinder dataBinder){
+//        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+//        dataBinder.registerCustomEditor(String.class,stringTrimmerEditor);
+//    }
     @GetMapping("/testtypesetup")
     public String testType(Model model) {
         logger.info("---Test Type Form Initialized---");
@@ -42,11 +49,12 @@ public class TestTypeController {
 
     @PostMapping("/testtypesetup")
     public String saveTestType(@Valid @ModelAttribute("testtype") TestTypeDto testTypeDto, BindingResult errors) {
-        if (testTypeService.isTypeExist(testTypeDto.getTypeName())) {
-            errors.addError(new FieldError("testtype", "typeName", "Type Name Already Exist"));
-        }
         if (errors.hasErrors()) {
             logger.error("Validation Errors : {}", errors.getAllErrors());
+            return "admin/test_type_setup";
+        }
+        if (testTypeService.isTypeExist(testTypeDto.getTypeName())) {
+            errors.addError(new FieldError("testtype", "typeName", "Type Name Already Exist"));
             return "admin/test_type_setup";
         }
         ModelMapper modelMapper = new ModelMapper();

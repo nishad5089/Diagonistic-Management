@@ -33,18 +33,13 @@ public class TestController {
         Test test = new Test();
         model.addAttribute("test", test);
 
-
         return "admin/test_setup";
     }
 
     @PostMapping("/testsetup/save")
     public String saveTest(@ModelAttribute("test") Test test) {
-
-
         testService.save(test);
-
         // use a redirect to prevent duplicate submissions
         return "redirect:/admin/testsetup";
-
     }
 }
