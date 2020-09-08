@@ -30,15 +30,27 @@ public class TestRequest {
     )
     private List<Test> tests;
 
+    @Column(name= "amount")
+    private double amount;
+
+    @Column(name = "test_Request_date")
+    private Date testRequestDate;
+
+    @Column(name = "bill_no")
+    private String bill_no;
+
     public TestRequest() {
     }
 
-    public TestRequest(int id, String nameOfPatient, Date dateOfBirth, String mobileNO, List<Test> tests) {
+    public TestRequest(int id, String nameOfPatient, Date dateOfBirth, String mobileNO, List<Test> tests, double amount, Date testRequestDate, String bill_no) {
         this.id = id;
         this.nameOfPatient = nameOfPatient;
         this.dateOfBirth = dateOfBirth;
         this.mobileNO = mobileNO;
         this.tests = tests;
+        this.amount = amount;
+        this.testRequestDate = testRequestDate;
+        this.bill_no = bill_no;
     }
 
     public int getId() {
@@ -79,5 +91,29 @@ public class TestRequest {
 
     public void setTests(List<Test> tests) {
         this.tests = tests;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public void setTestRequestDate(Date testRequestDate) {
+        this.testRequestDate = testRequestDate;
+    }
+
+    public void setBill_no(String bill_no) {
+        this.bill_no = bill_no;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public Date getTestRequestDate() {
+        return testRequestDate;
+    }
+
+    public String getBill_no() {
+        return bill_no;
     }
 }
