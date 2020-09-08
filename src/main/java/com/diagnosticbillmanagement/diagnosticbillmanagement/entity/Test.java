@@ -9,7 +9,7 @@ public class Test {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "test_name")
+    @Column(name = "test_name", unique = true)
     private String testName;
 
     @Column(name = "fee")
