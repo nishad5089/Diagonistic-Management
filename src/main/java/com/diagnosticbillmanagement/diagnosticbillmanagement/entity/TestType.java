@@ -1,6 +1,7 @@
 package com.diagnosticbillmanagement.diagnosticbillmanagement.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -11,6 +12,7 @@ public class TestType {
     @Column(name="id")
     private int id;
 
+    @NotBlank(message = "Type Name should not be empty")
     @Column(name="type_name",unique=true)
     private String typeName;
 

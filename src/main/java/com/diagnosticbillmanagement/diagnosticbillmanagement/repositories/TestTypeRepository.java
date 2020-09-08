@@ -7,5 +7,4 @@ import java.util.List;
 @Repository
 public interface TestTypeRepository extends JpaRepository<TestType, Integer> {
     public List<TestType> findAllByOrderByTypeNameAsc();
-
 }
