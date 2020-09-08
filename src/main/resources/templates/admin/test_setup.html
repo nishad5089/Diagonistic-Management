@@ -33,20 +33,24 @@
                         <div class="card-header">
                             <h3 class="card-title">Test Setup</h3>
                         </div>
-                        <form class="form-horizontal" th:action="@{testsetup/save}"
+                        <form class="form-horizontal" th:action="@{testsetup}"
                               th:object="${test}" method="POST">
                             <input type="hidden" th:field="*{id}" />
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="testName" class="col-sm-3 col-form-label">Test Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" th:field="*{testName}" class="form-control" id="testName" placeholder="Test Name">
+                                        <input type="text" th:field="*{testName}" class="form-control" th:classappend="${#fields.hasErrors('testName')}? 'is-invalid':''" id="testName" placeholder="Test Name">
+                                        <span  class="error invalid-feedback" th:each="error: ${#fields.errors('testName')}"
+                                              th:text="${error}">Validation error</span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="fee" class="col-sm-3 col-form-label">Fee</label>
                                     <div class="col-sm-9">
-                                        <input type="text" th:field="*{fee} " class="form-control" id="fee" placeholder="Fee in BDT">
+                                        <input type="text" th:field="*{fee} " class="form-control" th:classappend="${#fields.hasErrors('fee')}? 'is-invalid':''" id="fee" placeholder="Fee in BDT">
+                                        <span class="error invalid-feedback" th:each="error: ${#fields.errors('fee')}"
+                                              th:text="${error}">Validation error</span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -59,16 +63,13 @@
                                                     th:text="${testtype.typeName}"></option>
                                         </select>
                                     </div>
-
                                 </div>
-
                             </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-info" style="float: right;">Save</button>
                             </div>
                         </form>
                     </div>
-
                 </div>
             </div>
 

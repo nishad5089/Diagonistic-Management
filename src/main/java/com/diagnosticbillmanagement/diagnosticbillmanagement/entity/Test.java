@@ -1,5 +1,7 @@
 package com.diagnosticbillmanagement.diagnosticbillmanagement.entity;
 import javax.persistence.*;
+import javax.validation.constraints.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -8,12 +10,16 @@ public class Test {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    @NotBlank(message = "Test Name should not be empty")
     @Column(name = "test_name")
     private String testName;
 
+    @NotNull(message = "Fee should not be empty")
+//    @DecimalMax(value = "9999999999.999", message = "The decimal value can not be more than 9999999999.999")
+    @DecimalMin(value = "1.0", inclusive = false,message = "Fee must be greater then zero")
+    @Digits(integer = 6, fraction = 2, message = "{javax.validation.constraints.Digits.message}")
     @Column(name = "fee")
-    private double fee;
+    private BigDecimal fee;
 
     @ManyToOne(fetch=FetchType.LAZY,
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
@@ -34,11 +40,10 @@ public class Test {
     public Test() {
     }
 
-    public Test(int id, String testName, double fee) {
+    public Test(int id, String testName, BigDecimal fee) {
         this.id = id;
         this.testName = testName;
         this.fee = fee;
-
     }
 
     public TestType getTestType() {
@@ -65,11 +70,11 @@ public class Test {
         this.testName = testName;
     }
 
-    public double getFee() {
+    public BigDecimal getFee() {
         return fee;
     }
 
-    public void setFee(double fee) {
+    public void setFee(BigDecimal fee) {
         this.fee = fee;
     }
 
