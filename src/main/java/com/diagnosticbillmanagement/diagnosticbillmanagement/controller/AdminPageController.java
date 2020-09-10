@@ -17,7 +17,7 @@ public class AdminPageController {
 
     @RequestMapping("/admin/testrequest")
     public String testRequest() {
-        return "admin/testRequest";
+        return "test_request";
     }
 
 }

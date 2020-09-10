@@ -1,8 +1,12 @@
 package com.diagnosticbillmanagement.diagnosticbillmanagement.entity;
+
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name="test")
@@ -27,16 +31,17 @@ public class Test {
     @JoinColumn(name = "testtype_id")
     private TestType testType;
 
-    @ManyToMany(fetch=FetchType.LAZY,
-            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinTable(
-            name="test_testrequest",
-            joinColumns=@JoinColumn(name="test_id"),
-            inverseJoinColumns=@JoinColumn(name="testrequest_id")
-    )
-    private List<TestRequest> testRequests;
-
+//    @ManyToMany(fetch=FetchType.LAZY,
+//            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+//                    CascadeType.DETACH, CascadeType.REFRESH})
+//    @JoinTable(
+//            name="test_testrequest",
+//            joinColumns=@JoinColumn(name="test_id"),
+//            inverseJoinColumns=@JoinColumn(name="testrequest_id")
+//    )
+//    private List<TestRequest> testRequests;
+    @OneToMany(mappedBy = "test")
+    private Set<TestRequestTest> testRequestTests;
     public Test() {
     }
 
@@ -77,12 +82,41 @@ public class Test {
     public void setFee(BigDecimal fee) {
         this.fee = fee;
     }
+//
+//    public List<TestRequest> getTestRequests() {
+//        return testRequests;
+//    }
+//
+//    public void setTestRequests(List<TestRequest> testRequests) {
+//        this.testRequests = testRequests;
+//    }
 
-    public List<TestRequest> getTestRequests() {
-        return testRequests;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Test test = (Test) o;
+        return id == test.id &&
+                Objects.equals(testName, test.testName) &&
+                Objects.equals(fee, test.fee) &&
+                Objects.equals(testType, test.testType) &&
+                Objects.equals(testRequestTests, test.testRequestTests);
     }
 
-    public void setTestRequests(List<TestRequest> testRequests) {
-        this.testRequests = testRequests;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, testName, fee, testType, testRequestTests);
     }
+
+//    @Override
+//    public String toString() {
+//        return "{" +
+//                "\"id\":" + id +
+//                ",\"testName\":\"" + testName + '"' +
+//                ",\"fee\":" + fee +
+//                '}';
+//    }
+
+
 }

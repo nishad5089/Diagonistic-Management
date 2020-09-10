@@ -31,22 +31,23 @@
                 <div class="col-md-6" style="margin: 0 auto;">
                     <div class="card card-info">
                         <div class="card-header">
-                            <h3 class="card-title">Test Setup</h3>
+                            <h3 class="card-title">Test Request Entry</h3>
                         </div>
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" action="#" th:action="@{testrequest}"
+                              th:object="${testRequest}" method="POST">
                             <div class="card-body">
                                 <div class="form-group row">
-                                    <label for="testName" class="col-sm-3 col-form-label">Patient Name</label>
+                                    <label for="patName" class="col-sm-3 col-form-label">Patient Name</label>
                                     <div class="col-sm-9">
-                                        <input type="typeName" class="form-control" id="testName"
-                                               placeholder="Test Name">
+                                        <input type="text" th:field="*{testRequest.nameOfPatient}" class="form-control" id="patName"
+                                               placeholder="Patient Name">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Date of Birth</label>
 
                                     <div class="input-group date col-sm-9" id="reservationdate" data-target-input="nearest">
-                                        <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                                        <input type="text" id="dob" th:field="*{testRequest.dateOfBirth}" class="form-control datetimepicker-input" data-target="#reservationdate"/>
                                         <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                         </div>
@@ -55,31 +56,30 @@
                                 <div class="form-group row">
                                     <label for="mobileNo" class="col-sm-3 col-form-label">Mobile No</label>
                                     <div class="col-sm-9">
-                                        <input type="typeName" class="form-control" id="mobileNo"
+                                        <input type="text"  th:field="*{testRequest.mobileNO}"  class="form-control" id="mobileNo"
                                                placeholder="Mobile Number">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Select Test</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control">
-                                            <option>--Select--</option>
-                                            <option>option 2</option>
-                                            <option>option 3</option>
-                                            <option>option 4</option>
-                                            <option>option 5</option>
+                                        <select id="input1" type="text" th:field ="*{test}" class="form-control">
+                                            <option value="">choose..</option>
+                                            <option th:each="test: ${testlist}"
+                                                    th:value="${test.id}"
+                                                    th:text="${test.testName}"></option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="fee" class="col-sm-3 col-form-label">Fee</label>
                                     <div class="col-sm-9">
-                                        <input type="typeName" class="form-control" id="fee" placeholder="Fee in BDT">
+                                        <input th:id="fee" type="text" class="form-control" id="fee" placeholder="Fee in BDT" disabled>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-info" style="float: right;">Add</button>
+                                <button th:id="submitbtn" type="submit" class="btn btn-info" style="float: right;">Add</button>
                             </div>
                         </form>
                     </div>
@@ -173,15 +173,16 @@
                                 </tbody>
                             </table>
                         </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer clearfix">
-                            <ul class="pagination pagination-sm m-0 float-right">
-                                <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                            </ul>
+                        <div class="clearfix">
+                            <div class="form-group row float-right">
+                                <label for="total" class="col-form-label">Total</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="total" placeholder="Total in BDT" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-info" style="float: right;">Save</button>
                         </div>
                     </div>
                 </div>
@@ -189,6 +190,5 @@
         </div>
     </section>
 </div>
-
 </body>
 </html>
