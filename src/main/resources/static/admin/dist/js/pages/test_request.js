@@ -1,5 +1,5 @@
-$(document).ready(function(){
-    $("#input1").change(function(event){
+$(document).ready(function () {
+    $("#input1").change(function (event) {
         var id = $(this).val();
 
         //stop submit the form event. Do this manually using ajax post function
@@ -12,31 +12,28 @@ $(document).ready(function(){
             data: JSON.stringify(id),
             dataType: 'json',
             cache: false,
-            timeout: 600000,
             success: function (data) {
-                $("#fee").val(data);
+                $("#fee").val(data.fee);
             },
             error: function (e) {
 
-            alert("Failed")
+                alert("Failed")
 
             }
         });
     });
-        $("#submitbtn").click(function(event){
-
-        //stop submit the form event. Do this manually using ajax post function
+    $("#form").submit(function (event) {
         event.preventDefault();
         var patName = $("#patName").val();
 
-        var testRequestTest={
+        var testRequestTest = {
             "testRequest": {
                 "nameOfPatient": patName,
                 "dateOfBirth": $("#dob").val(),
                 "mobileNO": $("#mobileNo").val()
             },
-            "test" : {
-                "id" : $("#input1").val()
+            "test": {
+                "id": $("#input1").val()
             }
         }
         // $("#btn-login").prop("disabled", true);
@@ -48,24 +45,32 @@ $(document).ready(function(){
             data: JSON.stringify(testRequestTest),
             dataType: 'json',
             cache: false,
-            timeout: 600000,
             success: function (data) {
+                var markup = "<tr><td>1.</td><td>" + data.testName + "</td><td>" + data.fee + "</td>  <td>\n" +
+                    "<a th:href=\"www.google.com\"\n" +
+                    "class=\"btn btn-info btn-sm\" style='color: #fff'>\n" +
+                    "Edit\n" +
+                    "</a>\n" +
+                    "\n" +
+                    "<a th:href=\"#\"\n" +
+                    "class=\"btn btn-danger btn-sm delete-row\" style='color: #fff'>\n" +
+                    "Delete\n" +
+                    "</a>\n" +
+                    "</td></tr>";
+                $("table tbody").append(markup);
 
-               // var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + name + "</td><td>" + email + "</td></tr>";
+                $(".delete-row").click(function(){
+                    if (!(confirm('Are you sure you want to delete this employee?'))) return false
+                    // $("table tbody").find('input[name="record"]').each(function(){
+                    //     if($(this).is(":checked")){
+                    //
+                    //     }
+                    // });
+                    $(this).parents("tr").remove();
 
-                // $.each(data, function(i, test){
-                //     var tests = "{Id: " + test.id +
-                //         ", Name: " + test.testName +
-                //         ", Fee: " + test.fee +"}";
-                //
-                //   alert(tests);
-                // });
+                });
 
-                var obj = JSON.parse(data);
-                var len = data.length;
-                alert("length"+len)
-               alert(obj.id)
-                alert(data)
+
             },
             error: function (e) {
                 alert("Failed")

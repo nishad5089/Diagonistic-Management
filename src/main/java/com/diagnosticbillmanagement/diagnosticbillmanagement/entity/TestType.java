@@ -55,7 +55,6 @@ public class TestType {
         this.typeName = typeName;
     }
 
-
     @Override
     public String toString() {
         return "TestType{" +

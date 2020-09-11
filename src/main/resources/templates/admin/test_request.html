@@ -33,7 +33,7 @@
                         <div class="card-header">
                             <h3 class="card-title">Test Request Entry</h3>
                         </div>
-                        <form class="form-horizontal" action="#" th:action="@{testrequest}"
+                        <form class="form-horizontal" id="form" action="#" th:action="@{testrequest}"
                               th:object="${testRequest}" method="POST">
                             <div class="card-body">
                                 <div class="form-group row">
@@ -102,74 +102,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1.</td>
-                                    <td>X-Ray LS Spine</td>
-                                    <td>500 Tk</td>
-                                    <td>
-                                        <a th:href="www.google.com"
-                                           class="btn btn-info btn-sm">
-                                            Update
-                                        </a>
 
-                                        <a th:href="www.google.com"
-                                           class="btn btn-danger btn-sm"
-                                           onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
-                                            Delete
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2.</td>
-                                    <td>Urine C/S-200</td>
-                                    <td>1000 Tk</td>
-                                    <td>
-                                        <a th:href="www.google.com"
-                                           class="btn btn-info btn-sm">
-                                            Update
-                                        </a>
-
-                                        <a th:href="www.google.com"
-                                           class="btn btn-danger btn-sm"
-                                           onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
-                                            Delete
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3.</td>
-                                    <td>pregnancy profile</td>
-                                    <td>800 TK</td>
-                                    <td>
-                                        <a th:href="www.google.com"
-                                           class="btn btn-info btn-sm">
-                                            Update
-                                        </a>
-
-                                        <a th:href="www.google.com"
-                                           class="btn btn-danger btn-sm"
-                                           onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
-                                            Delete
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4.</td>
-                                    <td>Abdomen</td>
-                                    <td>1600 TK</td>
-                                    <td>
-                                        <a th:href="www.google.com"
-                                           class="btn btn-info btn-sm">
-                                            Update
-                                        </a>
-
-                                        <a th:href="www.google.com"
-                                           class="btn btn-danger btn-sm"
-                                           onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
-                                            Delete
-                                        </a>
-                                    </td>
-                                </tr>
                                 </tbody>
                             </table>
                         </div>

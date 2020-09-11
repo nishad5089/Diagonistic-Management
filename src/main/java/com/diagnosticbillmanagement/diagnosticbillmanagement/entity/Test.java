@@ -109,14 +109,12 @@ public class Test {
         return Objects.hash(id, testName, fee, testType, testRequestTests);
     }
 
-//    @Override
-//    public String toString() {
-//        return "{" +
-//                "\"id\":" + id +
-//                ",\"testName\":\"" + testName + '"' +
-//                ",\"fee\":" + fee +
-//                '}';
-//    }
-
-
+    @Override
+    public String toString() {
+        return "Test{" +
+                "id=" + id +
+                ", testName='" + testName + '\'' +
+                ", fee=" + fee +
+                '}';
+    }
 }

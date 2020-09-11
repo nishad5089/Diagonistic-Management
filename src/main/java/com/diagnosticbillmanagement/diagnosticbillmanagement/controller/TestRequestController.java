@@ -5,12 +5,14 @@ import com.diagnosticbillmanagement.diagnosticbillmanagement.entity.Test;
 import com.diagnosticbillmanagement.diagnosticbillmanagement.entity.TestRequestTest;
 import com.diagnosticbillmanagement.diagnosticbillmanagement.services.TestRequestService;
 import com.diagnosticbillmanagement.diagnosticbillmanagement.services.TestService;
-import com.google.gson.Gson;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.*;
 
 @Controller
@@ -53,53 +56,37 @@ public class TestRequestController {
         return "admin/test_request";
     }
     @RequestMapping(value = "/testrequest", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody String  saveTestRequest(@RequestBody TestRequestTest testRequestTest, BindingResult errors) {
+    public @ResponseBody Test  saveTestRequest(@RequestBody TestRequestTest testRequestTest, BindingResult errors) {
         Test test =  testService.findById(testRequestTest.getTest().getId());
-
-        if(!testrequestmap.containsKey(testRequestTest.getTestRequest().getMobileNO())){
-            tests = new TreeSet<>();
-            testrequestmap = new HashMap<>();
-            if(testlist == null){
-                testlist = new ArrayList<>();
-            }
-            tests.add(test.getTestName());
-            testlist.add(test);
-            testrequestmap.put(testRequestTest.getTestRequest().getMobileNO(),tests);
-        }else {
-            tests = testrequestmap.get(testRequestTest.getTestRequest().getMobileNO());
-            if(!tests.contains(test.getTestName())) {
-                tests.add(test.getTestName());
-                testlist.add(test);
-                testrequestmap.put(testRequestTest.getTestRequest().getMobileNO(),tests);
-            }else {
-
-            }
-        }
-        Gson gson = new Gson();
-String jsonStr = gson.toJson(test);
-//        if(errors.hasErrors()) {
-//            return "admin/test_request";
+        test.setTestType(null);
+//        if(!testrequestmap.containsKey(testRequestTest.getTestRequest().getMobileNO())){
+//            tests = new TreeSet<>();
+//            testrequestmap = new HashMap<>();
+//            if(testlist == null){
+//                testlist = new ArrayList<>();
+//            }
+//            tests.add(test.getTestName());
+//            testlist.add(test);
+//            testrequestmap.put(testRequestTest.getTestRequest().getMobileNO(),tests);
+//        }else {
+//            tests = testrequestmap.get(testRequestTest.getTestRequest().getMobileNO());
+//            if(!tests.contains(test.getTestName())) {
+//                tests.add(test.getTestName());
+//                testlist.add(test);
+//                testrequestmap.put(testRequestTest.getTestRequest().getMobileNO(),tests);
+//            }else {
+//
+//            }
 //        }
-//        return "redirect:/admin/testrequest";
-//        JSONArray s = new JSONArray(testlist);
-//        String jsonStr =s.toString();
-//        JSONObject jo = new JSONObject();
-//        Gson gson = new Gson();
-//        String jsonStr = gson.toJson(test);
-//        ObjectMapper mapper = new ObjectMapper();
-//        //Converting the Object to JSONString
-//        JSONObject obj = new JSONObject(test);
 
-//        ObjectMapper mapper = new ObjectMapper();
-//        //Converting the Object to JSONString
-//        String jsonString = mapper.writeValueAsString(test);
-        return jsonStr;
+        return test;
     }
 
     @RequestMapping(value = "/testfee", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    BigDecimal getFeebyTestId(@Valid @RequestBody int id, Errors errors) {
+    Test getFeebyTestId(@RequestBody int id) {
         Test test =  testService.findById(id);
-        return test.getFee();
+        test.setTestType(null);
+        return test;
     }
 }
