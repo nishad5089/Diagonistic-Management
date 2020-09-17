@@ -1,3 +1,4 @@
+var total =0;
 $(document).ready(function () {
     $("#input1").change(function (event) {
         var id = $(this).val();
@@ -24,26 +25,17 @@ $(document).ready(function () {
     });
     $("#form").submit(function (event) {
         event.preventDefault();
-        var patName = $("#patName").val();
+        // var patName = $("#patName").val();
+        var id= $("#input1").val()
 
-        var testRequestTest = {
-            "testRequest": {
-                "nameOfPatient": patName,
-                "dateOfBirth": $("#dob").val(),
-                "mobileNO": $("#mobileNo").val()
-            },
-            "test": {
-                "id": $("#input1").val()
-            }
-        }
-        // $("#btn-login").prop("disabled", true);
-
+        $(".delete-row").click(function(){
+            if (!(confirm('Are you sure you want to delete this employee?'))) return false
+            $(this).parents("tr").remove();
+        });
         $.ajax({
-            type: "POST",
+            type: "GET",
             contentType: "application/json",
-            url: "/admin/testrequest",
-            data: JSON.stringify(testRequestTest),
-            dataType: 'json',
+            url: "/admin/gettest?id="+id,
             cache: false,
             success: function (data) {
                 var markup = "<tr><td>1.</td><td>" + data.testName + "</td><td>" + data.fee + "</td>  <td>\n" +
@@ -58,17 +50,13 @@ $(document).ready(function () {
                     "</a>\n" +
                     "</td></tr>";
                 $("table tbody").append(markup);
-
                 $(".delete-row").click(function(){
-                    if (!(confirm('Are you sure you want to delete this employee?'))) return false
-                    // $("table tbody").find('input[name="record"]').each(function(){
-                    //     if($(this).is(":checked")){
-                    //
-                    //     }
-                    // });
+                    // if (!(confirm('Are you sure you want to delete this employee?'))) return false
                     $(this).parents("tr").remove();
-
                 });
+
+                    total += data.fee;
+                $("#total").val(total);
 
 
             },
@@ -78,5 +66,28 @@ $(document).ready(function () {
         });
     });
 
+    $("#save").click(function (event) {
+        event.preventDefault();
 
+        var testRequest = {
+                "nameOfPatient": $("#patName").val(),
+                "dateOfBirth": $("#dob").val(),
+                "mobileNO": $("#mobileNo").val()
+            };
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/admin/testrequest",
+            data: JSON.stringify(testRequest),
+            dataType: 'json',
+            cache: false,
+            success: function (data) {
+                console.log("Success")
+            },
+            error: function (e) {
+             console.log(e)
+            }
+        });
+    });
 });

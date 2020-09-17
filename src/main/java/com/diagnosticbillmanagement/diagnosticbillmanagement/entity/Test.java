@@ -1,15 +1,12 @@
 package com.diagnosticbillmanagement.diagnosticbillmanagement.entity;
 
-
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Objects;
-import java.util.Set;
 
 @Entity
-@Table(name="test")
+@Table(name = "test")
 public class Test {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,33 +17,26 @@ public class Test {
 
     @NotNull(message = "Fee should not be empty")
 //    @DecimalMax(value = "9999999999.999", message = "The decimal value can not be more than 9999999999.999")
-    @DecimalMin(value = "1.0", inclusive = false,message = "Fee must be greater then zero")
+    @DecimalMin(value = "1.0", inclusive = false, message = "Fee must be greater then zero")
     @Digits(integer = 6, fraction = 2, message = "{javax.validation.constraints.Digits.message}")
     @Column(name = "fee")
     private BigDecimal fee;
 
-    @ManyToOne(fetch=FetchType.LAZY,
-            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+    @ManyToOne(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "testtype_id")
     private TestType testType;
 
-//    @ManyToMany(fetch=FetchType.LAZY,
-//            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-//                    CascadeType.DETACH, CascadeType.REFRESH})
-//    @JoinTable(
-//            name="test_testrequest",
-//            joinColumns=@JoinColumn(name="test_id"),
-//            inverseJoinColumns=@JoinColumn(name="testrequest_id")
-//    )
-//    private List<TestRequest> testRequests;
-    @OneToMany(mappedBy = "test")
-    private Set<TestRequestTest> testRequestTests;
+    @ManyToMany(fetch=FetchType.LAZY,
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH})
+    private List<TestRequest> testRequests;
+
     public Test() {
     }
 
-    public Test(int id, String testName, BigDecimal fee) {
-        this.id = id;
+    public Test(String testName, BigDecimal fee) {
         this.testName = testName;
         this.fee = fee;
     }
@@ -82,39 +72,12 @@ public class Test {
     public void setFee(BigDecimal fee) {
         this.fee = fee;
     }
-//
-//    public List<TestRequest> getTestRequests() {
-//        return testRequests;
-//    }
-//
-//    public void setTestRequests(List<TestRequest> testRequests) {
-//        this.testRequests = testRequests;
-//    }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Test test = (Test) o;
-        return id == test.id &&
-                Objects.equals(testName, test.testName) &&
-                Objects.equals(fee, test.fee) &&
-                Objects.equals(testType, test.testType) &&
-                Objects.equals(testRequestTests, test.testRequestTests);
+    public List<TestRequest> getTestRequests() {
+        return testRequests;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, testName, fee, testType, testRequestTests);
-    }
-
-    @Override
-    public String toString() {
-        return "Test{" +
-                "id=" + id +
-                ", testName='" + testName + '\'' +
-                ", fee=" + fee +
-                '}';
+    public void setTestRequests(List<TestRequest> testRequests) {
+        this.testRequests = testRequests;
     }
 }

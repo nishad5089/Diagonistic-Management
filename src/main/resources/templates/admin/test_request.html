@@ -39,7 +39,7 @@
                                 <div class="form-group row">
                                     <label for="patName" class="col-sm-3 col-form-label">Patient Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" th:field="*{testRequest.nameOfPatient}" class="form-control" id="patName"
+                                        <input type="text" th:field="*{nameOfPatient}" class="form-control" id="patName"
                                                placeholder="Patient Name">
                                     </div>
                                 </div>
@@ -47,7 +47,7 @@
                                     <label class="col-sm-3 col-form-label">Date of Birth</label>
 
                                     <div class="input-group date col-sm-9" id="reservationdate" data-target-input="nearest">
-                                        <input type="text" id="dob" th:field="*{testRequest.dateOfBirth}" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                                        <input type="text" id="dob" th:field="*{dateOfBirth}" class="form-control datetimepicker-input" data-target="#reservationdate"/>
                                         <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                         </div>
@@ -56,14 +56,14 @@
                                 <div class="form-group row">
                                     <label for="mobileNo" class="col-sm-3 col-form-label">Mobile No</label>
                                     <div class="col-sm-9">
-                                        <input type="text"  th:field="*{testRequest.mobileNO}"  class="form-control" id="mobileNo"
+                                        <input type="text"  th:field="*{mobileNO}"  class="form-control" id="mobileNo"
                                                placeholder="Mobile Number">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Select Test</label>
                                     <div class="col-sm-9">
-                                        <select id="input1" type="text" th:field ="*{test}" class="form-control">
+                                        <select id="input1" type="text" class="form-control">
                                             <option value="">choose..</option>
                                             <option th:each="test: ${testlist}"
                                                     th:value="${test.id}"
@@ -115,7 +115,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-info" style="float: right;">Save</button>
+                            <button type="submit" id="save" class="btn btn-info" style="float: right;">Save</button>
                         </div>
                     </div>
                 </div>

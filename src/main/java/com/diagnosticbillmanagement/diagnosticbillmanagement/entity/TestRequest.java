@@ -1,8 +1,8 @@
 package com.diagnosticbillmanagement.diagnosticbillmanagement.entity;
+
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name ="testrequest")
@@ -14,24 +14,22 @@ public class TestRequest {
     @Column(name = "pat_name")
     private String nameOfPatient;
 
-    @Pattern(regexp="^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$",message="Given date is valid")
     @Column(name="dob")
     private String dateOfBirth;
 
     @Column(name = "Mobile_no")
     private String mobileNO;
 
-//    @ManyToMany(fetch=FetchType.LAZY,
-//            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-//                    CascadeType.DETACH, CascadeType.REFRESH})
-//    @JoinTable(
-//            name="test_testrequest",
-//            joinColumns=@JoinColumn(name="testrequest_id"),
-//            inverseJoinColumns=@JoinColumn(name="test_id")
-//    )
-//    private List<Test> tests;
-    @OneToMany(mappedBy = "testRequest")
-    private Set<TestRequestTest> testRequestTests;
+    @ManyToMany(fetch=FetchType.LAZY,
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name="test_testrequest",
+            joinColumns=@JoinColumn(name="testrequest_id"),
+            inverseJoinColumns=@JoinColumn(name="test_id")
+    )
+    private List<Test> tests;
+
     @Column(name= "amount")
     private double amount;
 
@@ -44,11 +42,11 @@ public class TestRequest {
     public TestRequest() {
     }
 
-    public TestRequest(int id, String nameOfPatient, String dateOfBirth, String mobileNO, double amount, Date testRequestDate, String bill_no) {
-        this.id = id;
+    public TestRequest(String nameOfPatient, String dateOfBirth, String mobileNO, List<Test> tests, double amount, Date testRequestDate, String bill_no) {
         this.nameOfPatient = nameOfPatient;
         this.dateOfBirth = dateOfBirth;
         this.mobileNO = mobileNO;
+        this.tests = tests;
         this.amount = amount;
         this.testRequestDate = testRequestDate;
         this.bill_no = bill_no;
@@ -86,13 +84,13 @@ public class TestRequest {
         this.mobileNO = mobileNO;
     }
 
-//    public List<Test> getTests() {
-//        return tests;
-//    }
-//
-//    public void setTests(List<Test> tests) {
-//        this.tests = tests;
-//    }
+    public List<Test> getTests() {
+        return tests;
+    }
+
+    public void setTests(List<Test> tests) {
+        this.tests = tests;
+    }
 
     public void setAmount(double amount) {
         this.amount = amount;

@@ -16,28 +16,23 @@ public class TestType {
     @Column(name="type_name",unique=true)
     private String typeName;
 
-    @OneToMany(mappedBy = "testType", cascade = CascadeType.ALL)
-    private List<Test> tests;
+//    @OneToMany(mappedBy = "testType", cascade = CascadeType.ALL)
+//    private List<Test> tests;
 
     public TestType() {
-    }
-
-    public TestType(int id, String typeName) {
-        this.id = id;
-        this.typeName = typeName;
-    }
-
-    public List<Test> getTests() {
-        return tests;
-    }
-
-    public void setTests(List<Test> tests) {
-        this.tests = tests;
     }
 
     public TestType(String typeName) {
         this.typeName = typeName;
     }
+
+//    public List<Test> getTests() {
+//        return tests;
+//    }
+//
+//    public void setTests(List<Test> tests) {
+//        this.tests = tests;
+//    }
 
     public int getId() {
         return id;

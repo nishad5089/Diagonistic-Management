@@ -50,7 +50,12 @@ public class TestRequestServiceImp implements TestRequestService {
     }
 
     @Override
-    public void save(TestRequest testType) {
+    public void save(TestRequest testRequest) {
+        try {
+            testRequestRepository.save(testRequest);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 

@@ -9,7 +9,7 @@ public interface TestRequestService {
 
     TestRequest findById(int id);
 
-    void save(TestRequest testType);
+    void save(TestRequest testRequest);
 
     void deleteById(int theId);
 
