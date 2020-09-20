@@ -20,14 +20,18 @@ public class TestRequest {
     @Column(name = "Mobile_no")
     private String mobileNO;
 
-    @ManyToMany(fetch=FetchType.LAZY,
-            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
+
     @JoinTable(
             name="test_testrequest",
             joinColumns=@JoinColumn(name="testrequest_id"),
             inverseJoinColumns=@JoinColumn(name="test_id")
     )
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.MERGE,
+                    CascadeType.DETACH,
+                    CascadeType.REFRESH
+            })
     private List<Test> tests;
 
     @Column(name= "amount")

@@ -70,31 +70,10 @@ public class TestRequestController {
     Test getTest(@RequestParam("id") int id) {
         Test test = testService.findById(id);
         test.setTestType(null);
-        TestType type = new TestType("Scalve");
-        test.setTestType(type);
         if (testlist == null) {
             testlist = new ArrayList<>();
         }
         testlist.add(test);
-//        if(!testrequestmap.containsKey(testRequest.getMobileNO())){
-//            tests = new TreeSet<>();
-//            testrequestmap = new HashMap<>();
-//            if(testlist == null){
-//                testlist = new ArrayList<>();
-//            }
-//            tests.add(test.getTestName());
-//            testlist.add(test);
-//            testrequestmap.put(testRequest.getMobileNO(),tests);
-//        }else {
-//            tests = testrequestmap.get(testRequest.getMobileNO());
-//            if(!tests.contains(test.getTestName())) {
-//                tests.add(test.getTestName());
-//                testlist.add(test);
-//                testrequestmap.put(testRequest.getMobileNO(),tests);
-//            }else {
-//
-//            }
-//        }
         return test;
     }
 
