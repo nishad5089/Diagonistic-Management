@@ -69,19 +69,19 @@ public class TestRequestController {
     public @ResponseBody
     Test getTest(@RequestParam("id") int id) {
         Test test = testService.findById(id);
-        test.setTestType(null);
         if (testlist == null) {
             testlist = new ArrayList<>();
         }
         testlist.add(test);
-        return test;
+
+        Test test1 = new Test(test.getTestName(),test.getFee());
+        return test1;
     }
 
     @RequestMapping(value = "/testfee", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    Test getFeebyTestId(@RequestBody int id) {
+    BigDecimal getFeebyTestId(@RequestBody int id) {
         Test test = testService.findById(id);
-        test.setTestType(null);
-        return test;
+        return test.getFee();
     }
 }

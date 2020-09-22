@@ -23,14 +23,16 @@ public class Test {
     private BigDecimal fee;
 
     @ManyToOne(fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
+            cascade = {
+                       CascadeType.MERGE,
+                       CascadeType.DETACH,
+                       CascadeType.REFRESH})
     @JoinColumn(name = "testtype_id")
     private TestType testType;
 
-    @ManyToMany(fetch=FetchType.LAZY,
+    @ManyToMany(fetch=FetchType.EAGER,
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
+                    CascadeType.DETACH, CascadeType.REFRESH}, mappedBy = "tests")
     private List<TestRequest> testRequests;
 
     public Test() {

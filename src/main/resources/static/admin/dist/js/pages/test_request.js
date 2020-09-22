@@ -14,7 +14,7 @@ $(document).ready(function () {
             dataType: 'json',
             cache: false,
             success: function (data) {
-                $("#fee").val(data.fee);
+                $("#fee").val(data);
             },
             error: function (e) {
 
@@ -72,7 +72,8 @@ $(document).ready(function () {
         var testRequest = {
                 "nameOfPatient": $("#patName").val(),
                 "dateOfBirth": $("#dob").val(),
-                "mobileNO": $("#mobileNo").val()
+                "mobileNO": $("#mobileNo").val(),
+                "amount": $("#total").val()
             };
 
         $.ajax({
@@ -83,6 +84,14 @@ $(document).ready(function () {
             dataType: 'json',
             cache: false,
             success: function (data) {
+             $("#patName").val("");
+             $("#dob").val("");
+             $("#mobileNo").val("");
+             $("#total").val(0);
+             $('#input1').val('selectedIndex',0);
+             $('#fee').val("");
+
+
                 console.log("Success")
             },
             error: function (e) {
